@@ -1,3 +1,9 @@
+.button {
+  color: #229489;
+  border: 3px solid #229489;
+}
+
+
 :host {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;

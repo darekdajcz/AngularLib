@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
+import {AppService} from "./app.service";
 
 @Component({
   selector: 'app-main',
@@ -9,8 +10,17 @@ import {TranslateService} from "@ngx-translate/core";
 export class AppComponent {
   title = 'AngularLib';
 
-  constructor(private translate: TranslateService) {
+  constructor(private readonly translate: TranslateService, private readonly appService: AppService) {
     translate.setDefaultLang('pl')
     translate.use('pl')
   }
+
+  click(): void {
+    console.log('res')
+    this.appService.getCustomer().subscribe({
+      next: res => console.log('res')
+    })
+  }
+
+
 }
