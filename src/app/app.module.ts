@@ -17,6 +17,7 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { CoreModule } from "./core/core.module";
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -35,6 +36,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    CoreModule,
+    FontAwesomeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
