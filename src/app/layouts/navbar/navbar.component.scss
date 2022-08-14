@@ -1,0 +1,14 @@
+.navbar{
+  padding: 5px;
+  background-image: linear-gradient(15deg, #b5bcc400 0%, #b5bcc48c 100%);
+  display: flex;
+  justify-content: space-between;
+}
+
+.angular-logo {
+  min-height: 40px;
+  width: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/image/angular_logo.png");
+}

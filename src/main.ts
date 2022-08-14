@@ -3,10 +3,12 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
+import { preserveWhitespacesDefault } from "@angular/compiler";
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic().bootstrapModule(AppModule, {preserveWhitespaces: true})
+  .then(() => console.log('App already running..'))
   .catch(err => console.error(err));
