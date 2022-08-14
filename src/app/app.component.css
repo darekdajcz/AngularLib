@@ -1,7 +1,4 @@
-.button {
-  color: #229489;
-  border: 3px solid #229489;
-}
+
 
 
 :host {
@@ -13,11 +10,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.image {
-  width: 200px;
-  height: 200px;
-  background: #8820a8;
-}
+
 
 h1,
 h2,
