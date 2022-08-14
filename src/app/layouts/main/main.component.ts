@@ -1,17 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
-import {AppService} from "../../app.service";
+import { AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from "@ngx-translate/core";
+import { AppService } from "../../app.service";
+import { MatSidenav } from "@angular/material/sidenav";
+import { BreakpointObserver } from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterViewChecked {
 
-  title = 'AngularLib';
+  @ViewChild(MatSidenav) sideNav!: MatSidenav;
+  opened = false;
 
-  constructor(private readonly translate: TranslateService, private readonly appService: AppService) {
+  constructor(private readonly translate: TranslateService, private readonly appService: AppService,
+              private readonly breakpointObserver: BreakpointObserver, private readonly cdref: ChangeDetectorRef) {
     translate.setDefaultLang('pl')
     translate.use('pl')
   }
@@ -19,11 +23,27 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   click(): void {
     this.appService.getCustomer().subscribe({
       next: (res) => res.forEach((x) => console.log(x.firstName))
     })
   }
 
+  toggleSideNav() {
+    this.opened = !this.opened;
+  }
 
+  ngAfterViewChecked(): void {
+    // this.breakpointObserver.observe(['(max-width: 800px)']).subscribe((res) => {
+    //   if (res.matches) {
+    //     this.sideNav.mode = 'over'
+    //     this.sideNav.close()
+    //   } else {
+    //     this.sideNav.mode = 'side'
+    //     this.sideNav.open()
+    //   }
+    //   this.cdref.detectChanges();
+    // })
+  }
 }
