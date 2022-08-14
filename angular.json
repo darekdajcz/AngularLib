@@ -33,7 +33,7 @@
               "src/assets/i18n"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/scss/global.scss"
             ],
             "scripts": []
           },
@@ -100,7 +100,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/scss/global.scss"
             ],
             "scripts": []
           }
