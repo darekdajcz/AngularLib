@@ -12,6 +12,7 @@ import {MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
 import {ANGULAR_MAT_DATE_FORMATS} from "./app.constants";
 import {appInitializerFactoryConfg} from "./app.functions";
 import {HomeModule} from "./home/home.module";
+import { ErrorComponent } from './layouts/error/error.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -20,7 +21,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     MainComponent,
-    AppComponent
+    AppComponent,
+    ErrorComponent
   ],
   imports: [
     HomeModule,
