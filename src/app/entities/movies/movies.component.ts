@@ -19,23 +19,14 @@ export class MoviesComponent implements OnInit {
 
   constructor(private readonly spinner: NgxSpinnerService, private readonly movieService: MovieService,
               private readonly fb: FormBuilder) {
-
   }
 
   ngOnInit(): void {
     this.initFormGroup();
     /** spinner starts on init */
-    this.spinner.show().then(() =>
-      this.movieService.getAllMovies()
-        .pipe(
-          finalize(() => setTimeout(() => this.spinner.hide(), 500)),
-          tap((res) => res.forEach((movie) => this.totalAmount += +movie.amount))
-        )
-        .subscribe({
-          next: (res) => {
-            this.movies = res;
-          }
-        }))
+    this.spinner.show()
+      .then(() => this.getMovies())
+      .finally(() => setTimeout(() => this.spinner.hide(), 500))
   }
 
   initFormGroup(): void {
@@ -46,12 +37,44 @@ export class MoviesComponent implements OnInit {
     })
   }
 
-  saveMovie() {
-    const movieRequest = new CreateMovieModel(
-      this.movieFormGroup.get('title')?.value,
-      this.movieFormGroup.get('amount')?.value,
-      this.movieFormGroup.get('duration')?.value,
-    )
-    this.movieService.createMovie(movieRequest).subscribe()
+  getMovies(): void {
+    this.totalAmount = 0;
+    this.movieService.getAllMovies()
+      .pipe(
+        tap((res) => res.forEach((movie) => this.totalAmount += +movie.amount))
+      )
+      .subscribe({
+        next: (res) => {
+          this.movies = res;
+        }
+      })
+  }
+
+  saveMovie(): void {
+    this.spinner.show()
+      .then(() => {
+        const movieRequest = new CreateMovieModel(
+          this.movieFormGroup.get('title')?.value,
+          this.movieFormGroup.get('amount')?.value,
+          this.movieFormGroup.get('duration')?.value,
+        )
+        this.movieService.createMovie(movieRequest)
+          .subscribe({
+            next: (res) => this.getMovies()
+          })
+      })
+      .finally(() => setTimeout(() => this.spinner.hide(), 500))
+
+  }
+
+  deleteMovie(movieId: string): void {
+    this.spinner.show()
+      .then(() =>
+        this.movieService.deleteMovieById(movieId).subscribe({
+          next: (res) => this.getMovies()
+        })
+      )
+      .finally(() => setTimeout(() => this.spinner.hide(), 500))
+
   }
 }

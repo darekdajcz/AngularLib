@@ -11,6 +11,9 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatCardModule } from "@angular/material/card";
 import { FormModule } from "../../shared/form.module";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatDividerModule } from "@angular/material/divider";
 
 
 
@@ -28,7 +31,10 @@ import { ReactiveFormsModule } from "@angular/forms";
     MatSelectModule,
     MatCardModule,
     FormModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDividerModule
   ]
 })
 export class MoviesModule { }

@@ -1,10 +1,18 @@
 <section class="page">
   <p>movies section works!</p>
   <div *ngFor="let movie of movies">
-    {{movie.title}}
+    <div class="d-flex justify-content-between">
+       <span>
+      {{movie.title}}
+      </span>
+      <button mat-button (click)="deleteMovie(movie._id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <mat-divider></mat-divider>
   </div>
   <mat-accordion>
-  <mat-expansion-panel
+  <mat-expansion-panel class="amount mt-5"
     (opened)="panelOpenState = true"
     (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
@@ -19,6 +27,7 @@
 
 <!--  form section-->
   <div class="d-flex flex-column align-items-start pt-5" [formGroup]="movieFormGroup">
+    <p>Add movie by form</p>
     <mat-form-field appearance="fill">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title">
