@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgbAlertModule } from "@ng-bootstrap/ng-bootstrap";
 import { AlertComponent } from "./alert.component";
 import { FontAwesomeTestingModule } from "@fortawesome/angular-fontawesome/testing";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 
 
@@ -13,6 +14,7 @@ import { FontAwesomeTestingModule } from "@fortawesome/angular-fontawesome/testi
   imports: [
     CommonModule,
     NgbAlertModule,
+    FontAwesomeModule,
   ],
   exports: [
     AlertComponent

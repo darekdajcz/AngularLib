@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Observable, tap } from "rxjs";
+import { AlertService } from "../shared/services/alert.service";
 
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {
-  constructor() {
+  constructor(private readonly alertService: AlertService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -13,7 +14,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
         next: () => null,
         error: (error: HttpErrorResponse) => {
           if(!(error.status === 401 && (error.message === ''))) {
-            // TODO --> alertService
+            this.alertService.error(error.message);
           }
         }
       } )

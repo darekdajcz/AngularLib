@@ -41,7 +41,9 @@
       <input matInput  formControlName="duration">
     </mat-form-field>
     <!-- HTML !-->
-    <button class="button-49" role="button" (click)="saveMovie()">Save movie</button>
+    <button [disabled]="movieFormGroup.invalid" class="submit-button" role="button" (click)="saveMovie()">
+      Save movie
+    </button>
   </div>
 </section>
 

@@ -3,8 +3,8 @@
 }
 
 /* CSS */
-.button-49,
-.button-49:after {
+.submit-button,
+.submit-button:after {
   width: 100px;
   height: 36px;
   font-size: 10px;
@@ -19,9 +19,11 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+
+
 }
 
-.button-49:after {
+.submit-button:after {
   --slice-0: inset(50% 50% 50% 50%);
   --slice-1: inset(80% -6px 0 0);
   --slice-2: inset(50% -6px 30% 0);
@@ -41,7 +43,7 @@
   clip-path: var(--slice-0);
 }
 
-.button-49:hover:after {
+.submit-button:hover:after {
   animation: 1s glitch;
   animation-timing-function: steps(2, end);
 }
@@ -93,6 +95,12 @@
   }
 }
 
+.submit-button:disabled,
+.submit-button:hover:disabled:after {
+  background-color: rgba(33, 138, 129, 0.35);
+  animation: none;
+}
+
 .amount {
-  max-width: 700px!important;
+  max-width: 700px !important;
 }
