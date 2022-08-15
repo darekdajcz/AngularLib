@@ -60,7 +60,7 @@ export class MoviesComponent implements OnInit {
         )
         this.movieService.createMovie(movieRequest)
           .subscribe({
-            next: (res) => this.getMovies()
+            next: () => this.getMovies()
           })
       })
       .finally(() => setTimeout(() => this.spinner.hide(), 500))
@@ -71,7 +71,7 @@ export class MoviesComponent implements OnInit {
     this.spinner.show()
       .then(() =>
         this.movieService.deleteMovieById(movieId).subscribe({
-          next: (res) => this.getMovies()
+          next: () => this.getMovies()
         })
       )
       .finally(() => setTimeout(() => this.spinner.hide(), 500))
