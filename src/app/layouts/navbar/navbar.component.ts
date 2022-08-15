@@ -12,4 +12,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  redirectTo() {
+    window.open('https://github.com/darekbiszkopt/AngularLib', '_blank')
+  }
 }

@@ -7,7 +7,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
-
+  panelOpenState = false;
   constructor(private readonly spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {

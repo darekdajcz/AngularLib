@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MoviesComponent } from './movies.component';
 import { RouterModule } from "@angular/router";
 import { moviesRoute } from "./movies.route";
+import { MatExpansionModule } from "@angular/material/expansion";
 
 
 
@@ -12,7 +13,8 @@ import { moviesRoute } from "./movies.route";
   ],
   imports: [
     RouterModule.forChild(moviesRoute),
-    CommonModule
+    CommonModule,
+    MatExpansionModule
   ]
 })
 export class MoviesModule { }
