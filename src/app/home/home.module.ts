@@ -12,7 +12,7 @@ import {MatButtonModule} from "@angular/material/button";
     HomeComponent
   ],
   imports: [
-    RouterModule.forRoot([HOME_ROUTE]),
+    RouterModule.forChild([HOME_ROUTE]),
     CommonModule,
     TranslateModule,
     MatButtonModule

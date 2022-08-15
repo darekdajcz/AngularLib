@@ -22,6 +22,8 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
+import { EntityModule } from "./entities/entity.module";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -30,12 +32,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     MainComponent,
-    AppComponent,
     ErrorComponent,
     NavbarComponent
   ],
   imports: [
     NgbModule,
+    NgxSpinnerModule,
     HomeModule,
     BrowserModule,
     HttpClientModule,
@@ -43,6 +45,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     CoreModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
+    EntityModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

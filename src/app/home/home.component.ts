@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {AppService} from "../app.service";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-home',
@@ -11,12 +12,12 @@ export class HomeComponent implements OnInit {
 
   title = 'AngularLib';
 
-  constructor(private readonly translate: TranslateService, private readonly appService: AppService) {
-
-
+  constructor(private readonly translate: TranslateService, private readonly appService: AppService,
+              private readonly spinner: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
+    this.spinner.show().then(()=> setTimeout(() => this.spinner.hide(), 500))
   }
 
   click(): void {

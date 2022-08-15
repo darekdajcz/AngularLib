@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {CustomerDTO} from "./customer/dto/customer.-dto.model";
+import {CustomerDTO} from "./entities/customer/dto/customer.-dto.model";
 
 
 

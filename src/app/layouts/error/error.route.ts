@@ -28,8 +28,9 @@ export const errorRoute: Routes = [
       errorMessage: 'error.http.404'
 
     }
-  }, {
-    path: '**',
-    redirectTo: '404'
-  },
+  }
+  // , {
+  //   path: '**',
+  //   redirectTo: '404'
+  // }
 ]

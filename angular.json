@@ -33,7 +33,8 @@
               "src/assets/i18n"
             ],
             "styles": [
-              "src/assets/scss/global.scss"
+              "src/assets/scss/global.scss",
+              "node_modules/ngx-spinner/animations/square-jelly-box.css"
             ],
             "scripts": []
           },
@@ -100,7 +101,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/scss/global.scss"
+              "src/assets/scss/global.scss",
+              "node_modules/ngx-spinner/animations/square-jelly-box.css"
             ],
             "scripts": []
           }

@@ -13,7 +13,7 @@
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="/home">
+    <button mat-button class="menu-button" routerLink="">
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
@@ -21,9 +21,13 @@
       <mat-icon>person</mat-icon>
       <span>Profile</span>
     </button>
-    <button mat-button class="menu-button" routerLink="/about">
+    <button mat-button class="menu-button" routerLink="/info">
       <mat-icon>info</mat-icon>
       <span>About</span>
+    </button>
+   <button mat-button class="menu-button" routerLink="ngrx">
+     <img class="icon" [src]="'assets/image/ngrx_-removebg.png'"  alt="ngrx"/>
+     <span class="ngrx-span">NgRx</span>
     </button>
 
     <mat-divider></mat-divider>
@@ -34,11 +38,16 @@
     </button>
   </mat-sidenav>
 
+<!--   main router-outlet-->
   <mat-sidenav-content>
-    <div class="content d-flex justify-content-center align-items-center mat-elevation-z1">
-      Main content
+    <div class="content mat-elevation-z1">
+      <router-outlet></router-outlet>
+      <ngx-spinner  bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#229489" type = "square-jelly-box" [fullScreen] = "true">
+        <p style="color: #229489" >
+          Loading...
+        </p>
+      </ngx-spinner>
     </div>
   </mat-sidenav-content>
 
 </mat-sidenav-container>
-<router-outlet></router-outlet>
