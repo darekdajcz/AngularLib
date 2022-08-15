@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
+import { MovieService } from "./movie.service";
+import { MovieResponse } from "./dto/movie.response";
+import { finalize } from "rxjs";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-movies',
@@ -8,12 +12,36 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class MoviesComponent implements OnInit {
   panelOpenState = false;
-  constructor(private readonly spinner: NgxSpinnerService) { }
+  movies: MovieResponse[] = [];
+  movieFormGroup: FormGroup | undefined;
 
-  ngOnInit(): void {
-    /** spinner starts on init */
-    this.spinner.show().then(()=> setTimeout(() => this.spinner.hide(), 500))
+  constructor(private readonly spinner: NgxSpinnerService, private readonly movieService: MovieService,
+              private readonly fb: FormBuilder) {
 
   }
 
+  ngOnInit(): void {
+    this.initFormGroup();
+    /** spinner starts on init */
+    this.spinner.show().then(() =>
+      this.movieService.getAllMovies()
+        .pipe(finalize(() => setTimeout(() => this.spinner.hide(), 500)))
+        .subscribe({
+          next: (res) => {
+            this.movies = res;
+          }
+        }))
+  }
+
+  initFormGroup(): void {
+    this.movieFormGroup = this.fb.group({
+      title: 's',
+      amount: 's',
+      duration: 's'
+    })
+  }
+
+  saveMovie() {
+
+  }
 }

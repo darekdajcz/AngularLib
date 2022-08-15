@@ -1,5 +1,8 @@
 <section class="page">
   <p>movies section works!</p>
+  <div *ngFor="let movie of movies">
+    {{movie.title}}
+  </div>
   <mat-accordion>
   <mat-expansion-panel
     (opened)="panelOpenState = true"
@@ -15,19 +18,21 @@
   </mat-accordion>
 
 <!--  form section-->
-  <div class="d-flex flex-column align-items-start pt-5" style="">
+  <div class="d-flex flex-column align-items-start pt-5" [formGroup]="movieFormGroup">
     <mat-form-field appearance="fill">
       <mat-label>Title</mat-label>
-      <input matInput>
+      <input matInput formControlName="title">
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Amount</mat-label>
-      <input matInput>
+      <input matInput  formControlName="amount">
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Duration</mat-label>
-      <input matInput>
+      <input matInput  formControlName="duration">
     </mat-form-field>
+    <!-- HTML !-->
+    <button class="button-49" role="button" (click)="saveMovie()">Save movie</button>
   </div>
 </section>
 
