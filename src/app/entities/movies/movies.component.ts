@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { MovieService } from "./movie.service";
-import { MovieResponse } from "./dto/movie.response";
-import { finalize } from "rxjs";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { MovieInterface } from "./dto/movie.response";
+import { finalize, tap } from "rxjs";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { CreateMovieModel } from "./dto/create-movie.model";
 
 @Component({
   selector: 'app-movies',
@@ -12,8 +13,9 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 })
 export class MoviesComponent implements OnInit {
   panelOpenState = false;
-  movies: MovieResponse[] = [];
-  movieFormGroup: FormGroup | undefined;
+  movies: MovieInterface[] = [];
+  movieFormGroup!: FormGroup;
+  totalAmount = 0;
 
   constructor(private readonly spinner: NgxSpinnerService, private readonly movieService: MovieService,
               private readonly fb: FormBuilder) {
@@ -25,7 +27,10 @@ export class MoviesComponent implements OnInit {
     /** spinner starts on init */
     this.spinner.show().then(() =>
       this.movieService.getAllMovies()
-        .pipe(finalize(() => setTimeout(() => this.spinner.hide(), 500)))
+        .pipe(
+          finalize(() => setTimeout(() => this.spinner.hide(), 500)),
+          tap((res) => res.forEach((movie) => this.totalAmount += +movie.amount))
+        )
         .subscribe({
           next: (res) => {
             this.movies = res;
@@ -35,13 +40,18 @@ export class MoviesComponent implements OnInit {
 
   initFormGroup(): void {
     this.movieFormGroup = this.fb.group({
-      title: 's',
-      amount: 's',
-      duration: 's'
+      title: ['', Validators.required],
+      amount: ['', Validators.required],
+      duration: ['', Validators.required],
     })
   }
 
   saveMovie() {
-
+    const movieRequest = new CreateMovieModel(
+      this.movieFormGroup.get('title')?.value,
+      this.movieFormGroup.get('amount')?.value,
+      this.movieFormGroup.get('duration')?.value,
+    )
+    this.movieService.createMovie(movieRequest).subscribe()
   }
 }

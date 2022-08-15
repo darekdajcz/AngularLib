@@ -22,7 +22,7 @@ mat-sidenav {
   background-attachment: fixed;
   margin: 15px 15px 15px 30px;
   border-radius: 15px;
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
   font-size: 2rem;
   color: #209982db;
 }

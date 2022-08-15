@@ -9,18 +9,32 @@
   width: 20rem;
 }
 
-.mat-form-field-label{
-  color:#229489 !important;
-}
-.mat-form-field-underline{
-  &:hover {
-
-    background-color:#229489 !important;
-  }
+.mat-form-field-label {
+  color: #229489 !important;
 }
 
 .mat-form-field-ripple {
   background-color: #229489 !important;
+}
+
+::-webkit-scrollbar {
+  width: .75em;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(206, 10%, 86%);
+  border-radius: 100vw;
+  margin-block: .25em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #18756b;
+  border-radius: 100vw;
+  border: .15em solid #006600FF;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #144D44FF;
 }
 
 body {
@@ -32,6 +46,7 @@ body {
   -o-background-size: cover;
   background-repeat: no-repeat;;
   background-attachment: fixed;
+  overflow: hidden;
 }
 
 .page {
