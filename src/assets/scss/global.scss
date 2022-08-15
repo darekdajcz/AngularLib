@@ -4,11 +4,27 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 @import '../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
 
-.xxx {
-  color: red;
+.mat-form-field {
+  font-size: 12px;
+  width: 20rem;
+}
+
+.mat-form-field-label{
+  color:#229489 !important;
+}
+.mat-form-field-underline{
+  &:hover {
+
+    background-color:#229489 !important;
+  }
+}
+
+.mat-form-field-ripple {
+  background-color: #229489 !important;
 }
 
 body {
+  font-family: monospace;
   margin: 0;
   background-image: url("../image/background_1.png");
   -webkit-background-size: cover;

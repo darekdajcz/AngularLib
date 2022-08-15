@@ -1,4 +1,5 @@
 <section class="page">
+  <p>movies section works!</p>
   <mat-accordion>
   <mat-expansion-panel
     (opened)="panelOpenState = true"
@@ -9,10 +10,24 @@
         {{panelOpenState ? 'opened' : 'closed'}}
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>{{2000| currency:'zł':'symbol'}}</p>
+    <p class="currency">{{2000| currency:'zł':'symbol'}}</p>
   </mat-expansion-panel>
   </mat-accordion>
-  <p>movies works!</p>
 
+<!--  form section-->
+  <div class="d-flex flex-column align-items-start pt-5" style="">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Amount</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Duration</mat-label>
+      <input matInput>
+    </mat-form-field>
+  </div>
 </section>
 

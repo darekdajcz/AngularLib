@@ -13,26 +13,26 @@
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="">
+    <button mat-button class="menu-button" (click)="redirectTo('')">
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
-    <button mat-button class="menu-button" routerLink="/profile">
+    <button mat-button class="menu-button" (click)="redirectTo('profile')">
       <mat-icon>person</mat-icon>
       <span>Profile</span>
     </button>
-    <button mat-button class="menu-button" routerLink="/info">
+    <button mat-button class="menu-button" (click)="redirectTo('info')">
       <mat-icon>info</mat-icon>
       <span>About</span>
     </button>
-   <button mat-button class="menu-button" routerLink="ngrx">
+   <button mat-button class="menu-button" (click)="redirectTo('ngrx')">
      <img class="icon" [src]="'assets/image/ngrx_-removebg.png'"  alt="ngrx"/>
      <span class="ngrx-span">NgRx</span>
     </button>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="/help">
+    <button mat-button class="menu-button" (click)="redirectTo('help')">
       <mat-icon>help</mat-icon>
       <span>Help</span>
     </button>

@@ -41,11 +41,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HomeModule,
     BrowserModule,
     HttpClientModule,
+    EntityModule,
     AppRoutingModule,
     CoreModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    EntityModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -3,6 +3,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { AppService } from "../../app.service";
 import { MatSidenav } from "@angular/material/sidenav";
 import { BreakpointObserver } from "@angular/cdk/layout";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-main',
@@ -15,6 +16,7 @@ export class MainComponent implements OnInit, AfterViewChecked {
   opened = false;
 
   constructor(private readonly translate: TranslateService, private readonly appService: AppService,
+              private readonly router: Router,
               private readonly breakpointObserver: BreakpointObserver, private readonly cdref: ChangeDetectorRef) {
     translate.setDefaultLang('pl')
     translate.use('pl')
@@ -45,5 +47,10 @@ export class MainComponent implements OnInit, AfterViewChecked {
     //   }
     //   this.cdref.detectChanges();
     // })
+  }
+
+  redirectTo(pathRedirectTo: string) {
+
+    this.router.navigate([pathRedirectTo]).then(() => this.opened = false)
   }
 }
