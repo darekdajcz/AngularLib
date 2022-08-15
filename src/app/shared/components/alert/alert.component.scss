@@ -1,0 +1,50 @@
+
+
+
+
+.alerts {
+  opacity: 0.9;
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* ==========================================================================
+global alerts
+========================================================================== */
+.alert-success {
+  background-color:lightgreen;
+}
+
+.alert-warning {
+  background-color: lightyellow;
+}
+
+.alert-error {
+  background-color: darkred;
+}
+
+.alert-info {
+  background-color:cornflowerblue;
+
+}
+
+.alert {
+  color: #ffffff;
+  width: 300px;
+  font-size: 13px;
+  text-align: left;
+  line-height: 20px;
+  border-radius: 7px;
+  font-weight: 700;
+}
+
+.close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: #ffffff;
+  font-size: 15px;
+  opacity: 1;
+}

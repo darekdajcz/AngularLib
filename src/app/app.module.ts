@@ -24,6 +24,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { EntityModule } from "./entities/entity.module";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { AlertModule } from "./shared/components/alert/alert.module";
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -45,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AppRoutingModule,
     CoreModule,
     FontAwesomeModule,
+    AlertModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
