@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {AppService} from "../app.service";
 import { NgxSpinnerService } from "ngx-spinner";
+import { SPINNER_TIMEOUT } from "../shared/constants/timeout.constants";
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.spinner.show().then(()=> setTimeout(() => this.spinner.hide(), 500))
+    this.spinner.show().then(()=> setTimeout(() => this.spinner.hide(), SPINNER_TIMEOUT))
   }
 
   click(): void {

@@ -5,6 +5,7 @@ import { MovieInterface } from "./dto/movie.response";
 import { finalize, tap } from "rxjs";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CreateMovieModel } from "./dto/create-movie.model";
+import { SPINNER_TIMEOUT } from "../../shared/constants/timeout.constants";
 
 @Component({
   selector: 'app-movies',
@@ -27,7 +28,7 @@ export class MoviesComponent implements OnInit {
     /** spinner starts on init */
     this.spinner.show()
       .then(() => this.getMovies())
-      .finally(() => setTimeout(() => this.spinner.hide(), 500))
+      .finally(() => setTimeout(() => this.spinner.hide(), SPINNER_TIMEOUT))
   }
 
   initFormGroup(): void {
@@ -52,6 +53,7 @@ export class MoviesComponent implements OnInit {
   }
 
   saveMovie(): void {
+
     this.spinner.show()
       .then(() => {
         const movieRequest = new CreateMovieModel(
@@ -59,13 +61,35 @@ export class MoviesComponent implements OnInit {
           this.movieFormGroup.get('amount')?.value,
           this.movieFormGroup.get('duration')?.value,
         )
-        this.movieService.createMovie(movieRequest)
-          .subscribe({
-            next: () => this.getMovies()
-          })
-      })
-      .finally(() => setTimeout(() => this.spinner.hide(), 500))
 
+        if(!this.movieId) {
+          this.createMovie(movieRequest);
+        } else {
+          this.updateMovie(movieRequest)
+        }
+
+      })
+      .finally(() => setTimeout(() => {
+        this.clearForm();
+        this.spinner.hide();
+      }, SPINNER_TIMEOUT))
+
+
+
+  }
+
+  private updateMovie(movieRequest: CreateMovieModel): void {
+    this.movieService.updateMovie(movieRequest, this.movieId!.toString())
+      .subscribe({
+        next: () => this.getMovies()
+      })
+  }
+
+  private createMovie(movieRequest: CreateMovieModel): void {
+    this.movieService.createMovie(movieRequest)
+      .subscribe({
+        next: () => this.getMovies()
+      })
   }
 
   deleteMovie(movieId: string): void {
@@ -75,7 +99,7 @@ export class MoviesComponent implements OnInit {
           next: () => this.getMovies()
         })
       )
-      .finally(() => setTimeout(() => this.spinner.hide(), 500))
+      .finally(() => setTimeout(() => this.spinner.hide(), SPINNER_TIMEOUT))
 
   }
 

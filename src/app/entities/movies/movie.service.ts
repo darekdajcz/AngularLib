@@ -43,26 +43,9 @@ export class MovieService {
     return this.http.delete<MovieInterface>(this.resourceUrl, { params: movieParams })
   }
 
-
-  // @Post('/')
-  // async createMovie(@Res() res: Response, @Body() movie: CreateMovieModel) {
-  //   try {
-  //     const data = await this.movieService.createMovie(movie);
-  //     res.status(HttpStatus.OK).json(data);
-  //   } catch (err) {
-  //     res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(err);
-  //   }
-  // }
-  //
-  // @Put('')
-  // async updateMovieById(@Res() res: Response, @Body() movieParam: Partial<CreateMovieModel>, @Query('movieId') movieId: string) {
-  //   const data = this.movieService.updateMovie(movieId, movieParam);
-  //   res.status(HttpStatus.OK).json(data);
-  // }
-  //
-  // @Delete('/')
-  // async deleteMovieById(@Query('movieId') movieId: string) {
-  //   return await this.movieService.removeMovie(movieId);
-  // }
-
+  updateMovie = (movieRequest: CreateMovieModel, movieId: string): Observable<MovieInterface> => {
+    const movieParams = new HttpParams()
+      .set('movieId', movieId)
+    return this.http.put<MovieInterface>(this.resourceUrl, movieRequest, { params: movieParams })
+  }
 }
