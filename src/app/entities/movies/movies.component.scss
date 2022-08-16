@@ -7,7 +7,7 @@
 .submit-button:after {
   width: 100px;
   height: 36px;
-  font-size: 10px;
+  font-size: 12px;
   border-radius: 5px;
   font-family: 'Bebas Neue', sans-serif;
   background: #229489;
@@ -19,8 +19,6 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-
-
 }
 
 .submit-button:after {
@@ -103,4 +101,8 @@
 
 .amount {
   max-width: 700px !important;
+}
+
+button {
+  margin-right: 9rem;
 }

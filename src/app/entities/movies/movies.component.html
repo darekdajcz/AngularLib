@@ -2,7 +2,7 @@
   <p>movies section works!</p>
   <div *ngFor="let movie of movies">
     <div class="d-flex justify-content-between">
-       <span>
+       <span type="button" (click)="editMovie(movie)">
       {{movie.title}}
       </span>
       <button mat-button (click)="deleteMovie(movie._id)">
@@ -27,7 +27,9 @@
 
 <!--  form section-->
   <div class="d-flex flex-column align-items-start pt-5" [formGroup]="movieFormGroup">
-    <p>Add movie by form</p>
+    <p>
+      {{!movieId ? 'Create movie by form' : 'Update movie by form'}}
+    </p>
     <mat-form-field appearance="fill">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title">
@@ -41,9 +43,14 @@
       <input matInput  formControlName="duration">
     </mat-form-field>
     <!-- HTML !-->
-    <button [disabled]="movieFormGroup.invalid" class="submit-button" role="button" (click)="saveMovie()">
-      Save movie
-    </button>
+    <div class="d-flex">
+      <button [disabled]="movieFormGroup.invalid" class="submit-button" role="button" (click)="saveMovie()">
+        {{!movieId ? 'Create' : 'Update'}}
+      </button>
+      <button mat-raised-button  (click)="clearForm()">
+        Clear
+      </button>
+    </div>
   </div>
 </section>
 

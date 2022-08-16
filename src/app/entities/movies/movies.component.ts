@@ -16,6 +16,7 @@ export class MoviesComponent implements OnInit {
   movies: MovieInterface[] = [];
   movieFormGroup!: FormGroup;
   totalAmount = 0;
+  movieId?: string;
 
   constructor(private readonly spinner: NgxSpinnerService, private readonly movieService: MovieService,
               private readonly fb: FormBuilder) {
@@ -76,5 +77,19 @@ export class MoviesComponent implements OnInit {
       )
       .finally(() => setTimeout(() => this.spinner.hide(), 500))
 
+  }
+
+  editMovie(movie: MovieInterface) {
+    this.movieId = movie._id
+    this.movieFormGroup.patchValue({
+      title: movie.title,
+      amount: movie.amount,
+      duration: movie.duration
+    })
+  }
+
+  clearForm() {
+    this.movieFormGroup.reset()
+    this.movieId = '';
   }
 }
