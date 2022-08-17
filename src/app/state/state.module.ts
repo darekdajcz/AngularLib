@@ -14,7 +14,7 @@ export const firebaseConfig =' environment.firebaseConfig';
 
 @NgModule({
   imports: [
-    AngularFireModule.initializeApp(firebaseConfig),
+    // AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
 
@@ -25,7 +25,6 @@ export const firebaseConfig =' environment.firebaseConfig';
 
     // Signature matches AppState interface
     StoreModule.forRoot({
-      post: postReducer,
     }),
 
     StoreDevtoolsModule.instrument({ maxAge: 25 })
