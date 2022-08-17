@@ -25,7 +25,8 @@ import { MatListModule } from "@angular/material/list";
 import { EntityModule } from "./entities/entity.module";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AlertModule } from "./shared/components/alert/alert.module";
-import { StoreModule } from "@ngrx/store";
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -49,7 +50,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     FontAwesomeModule,
     AlertModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -62,7 +62,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     FontAwesomeModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    })
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
