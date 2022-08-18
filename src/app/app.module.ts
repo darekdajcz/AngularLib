@@ -28,6 +28,7 @@ import { AlertModule } from './shared/components/alert/alert.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { SharedStateMovieModule } from './reducers/shared-state/state';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -67,7 +68,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 15
-    })
+    }),
+    SharedStateMovieModule
     // StoreModule.forRoot(reducers, {
     //   metaReducers
     // })
