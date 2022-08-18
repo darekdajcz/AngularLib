@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { MovieService } from "./movie.service";
 import { MovieInterface } from "./dto/movie.response";
-import { finalize, tap } from "rxjs";
+import { tap } from "rxjs";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CreateMovieModel } from "./dto/create-movie.model";
 import { SPINNER_TIMEOUT } from "../../shared/constants/timeout.constants";
+import { Store } from "@ngrx/store";
+import * as MoviePageActions from "../../reducers/actions/movies-page.actions"
 
 @Component({
   selector: 'app-movies',
@@ -17,17 +19,21 @@ export class MoviesComponent implements OnInit {
   movies: MovieInterface[] = [];
   movieFormGroup!: FormGroup;
   totalAmount = 0;
-  movieId?: string;
+  movieId!: string;
 
   constructor(private readonly spinner: NgxSpinnerService, private readonly movieService: MovieService,
-              private readonly fb: FormBuilder) {
+              private readonly fb: FormBuilder, private readonly store: Store) {
   }
 
   ngOnInit(): void {
     this.initFormGroup();
     /** spinner starts on init */
     this.spinner.show()
-      .then(() => this.getMovies())
+      .then(() => {
+        this.getMovies();
+        this.store.dispatch(MoviePageActions.enter())
+
+      })
       .finally(() => setTimeout(() => this.spinner.hide(), SPINNER_TIMEOUT))
   }
 
@@ -53,7 +59,6 @@ export class MoviesComponent implements OnInit {
   }
 
   saveMovie(): void {
-
     this.spinner.show()
       .then(() => {
         const movieRequest = new CreateMovieModel(
@@ -62,23 +67,26 @@ export class MoviesComponent implements OnInit {
           this.movieFormGroup.get('duration')?.value,
         )
 
-        if(!this.movieId) {
+        if (!this.movieId) {
           this.createMovie(movieRequest);
         } else {
           this.updateMovie(movieRequest)
         }
-
       })
       .finally(() => setTimeout(() => {
         this.clearForm();
         this.spinner.hide();
       }, SPINNER_TIMEOUT))
-
-
-
   }
 
   private updateMovie(movieRequest: CreateMovieModel): void {
+    this.store.dispatch(
+      MoviePageActions.updateMovie({
+        movieId: this.movieId,
+        changes: movieRequest
+      })
+    )
+
     this.movieService.updateMovie(movieRequest, this.movieId!.toString())
       .subscribe({
         next: () => this.getMovies()
@@ -86,6 +94,11 @@ export class MoviesComponent implements OnInit {
   }
 
   private createMovie(movieRequest: CreateMovieModel): void {
+    this.store.dispatch(
+      MoviePageActions.createMovie({
+        movie: movieRequest
+      })
+    )
     this.movieService.createMovie(movieRequest)
       .subscribe({
         next: () => this.getMovies()
@@ -94,16 +107,28 @@ export class MoviesComponent implements OnInit {
 
   deleteMovie(movieId: string): void {
     this.spinner.show()
-      .then(() =>
-        this.movieService.deleteMovieById(movieId).subscribe({
-          next: () => this.getMovies()
-        })
+      .then(() => {
+
+          this.store.dispatch(
+            MoviePageActions.deleteMovie({
+              movieId: movieId
+            })
+          )
+
+          this.movieService.deleteMovieById(movieId).subscribe({
+            next: () => this.getMovies()
+          })
+        }
       )
       .finally(() => setTimeout(() => this.spinner.hide(), SPINNER_TIMEOUT))
 
   }
 
   editMovie(movie: MovieInterface) {
+    this.store.dispatch(
+      MoviePageActions.selectMovie({
+      movieId: this.movieId
+    }))
     this.movieId = movie._id
     this.movieFormGroup.patchValue({
       title: movie.title,
@@ -113,6 +138,9 @@ export class MoviesComponent implements OnInit {
   }
 
   clearForm() {
+    this.store.dispatch(
+      MoviePageActions.clearSelectedMovie()
+    )
     this.movieFormGroup.reset()
     this.movieId = '';
   }
