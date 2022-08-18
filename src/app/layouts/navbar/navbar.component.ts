@@ -7,12 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
   redirectTo() {
-    window.open('https://github.com/darekbiszkopt/AngularLib', '_blank')
+    window.open('https://github.com/darekbiszkopt/AngularLib', '_blank');
   }
 }

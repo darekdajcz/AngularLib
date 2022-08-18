@@ -1,5 +1,5 @@
 export interface MovieResponse {
-  movies: MovieInterface[]
+  movies: MovieInterface[];
 }
 
 export interface MovieInterface {

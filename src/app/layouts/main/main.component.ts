@@ -1,9 +1,9 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { TranslateService } from "@ngx-translate/core";
-import { AppService } from "../../app.service";
-import { MatSidenav } from "@angular/material/sidenav";
-import { BreakpointObserver } from "@angular/cdk/layout";
-import { Router } from "@angular/router";
+import { TranslateService } from '@ngx-translate/core';
+import { AppService } from '../../app.service';
+import { MatSidenav } from '@angular/material/sidenav';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -18,8 +18,8 @@ export class MainComponent implements OnInit, AfterViewChecked {
   constructor(private readonly translate: TranslateService, private readonly appService: AppService,
               private readonly router: Router,
               private readonly breakpointObserver: BreakpointObserver, private readonly cdref: ChangeDetectorRef) {
-    translate.setDefaultLang('pl')
-    translate.use('pl')
+    translate.setDefaultLang('pl');
+    translate.use('pl');
   }
 
   ngOnInit(): void {
@@ -29,7 +29,7 @@ export class MainComponent implements OnInit, AfterViewChecked {
   click(): void {
     this.appService.getCustomer().subscribe({
       next: (res) => res.forEach((x) => console.log(x.firstName))
-    })
+    });
   }
 
   toggleSideNav() {
@@ -51,6 +51,6 @@ export class MainComponent implements OnInit, AfterViewChecked {
 
   redirectTo(pathRedirectTo: string) {
 
-    this.router.navigate([pathRedirectTo]).then(() => this.opened = false)
+    this.router.navigate([pathRedirectTo]).then(() => this.opened = false);
   }
 }

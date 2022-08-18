@@ -3,7 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 import { TranslateService } from '@ngx-translate/core';
-import { AlertModel, AlertType } from "../components/alert/alert.model";
+import { AlertModel, AlertType } from '../components/alert/alert.model';
 
 @Injectable({ providedIn: 'root' })
 export class AlertService {

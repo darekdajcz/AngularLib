@@ -1,10 +1,10 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
-import { AlertModel, AlertType } from "./alert.model";
-import { AlertService } from "../../services/alert.service";
-import { ALERT_TIMEOUT } from "../../constants/timeout.constants";
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AlertModel, AlertType } from './alert.model';
+import { AlertService } from '../../services/alert.service';
+import { ALERT_TIMEOUT } from '../../constants/timeout.constants';
 
 @UntilDestroy()
 @Component({

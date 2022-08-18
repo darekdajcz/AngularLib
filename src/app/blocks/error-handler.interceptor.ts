@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
-import { Observable, tap } from "rxjs";
-import { AlertService } from "../shared/services/alert.service";
+import { Injectable } from '@angular/core';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
+import { AlertService } from '../shared/services/alert.service';
 
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {
@@ -13,11 +13,11 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       tap({
         next: () => null,
         error: (error: HttpErrorResponse) => {
-          if(!(error.status === 401 && (error.message === ''))) {
+          if (!(error.status === 401 && (error.message === ''))) {
             this.alertService.error(error.message);
           }
         }
-      } )
+      })
     );
   }
 

@@ -1,10 +1,10 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { FaIconLibrary } from "@fortawesome/angular-fontawesome";
-import { fontAwesomeIco } from "./font-awesome-icons/font-awesome-icons";
-import locales from '@angular/common/locales/pl'
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { ErrorHandlerInterceptor } from "../blocks/error-handler.interceptor";
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { fontAwesomeIco } from './font-awesome-icons/font-awesome-icons';
+import locales from '@angular/common/locales/pl';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorHandlerInterceptor } from '../blocks/error-handler.interceptor';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { ErrorHandlerInterceptor } from "../blocks/error-handler.interceptor";
   imports: [
     CommonModule
   ],
-  providers:[
+  providers: [
     {
       provide: LOCALE_ID,
       useValue: 'pl'
@@ -26,7 +26,7 @@ import { ErrorHandlerInterceptor } from "../blocks/error-handler.interceptor";
 })
 export class CoreModule {
   constructor(fontAwesomeLib: FaIconLibrary) {
-    registerLocaleData(locales)
-    fontAwesomeLib.addIcons(...fontAwesomeIco)
+    registerLocaleData(locales);
+    fontAwesomeLib.addIcons(...fontAwesomeIco);
   }
 }

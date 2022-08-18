@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
-import { CustomerComponent } from "./customer.component";
+import { Routes } from '@angular/router';
+import { CustomerComponent } from './customer.component';
 
 export const customerRoute: Routes = [
   {
     path: '',
-    component: CustomerComponent,
+    component: CustomerComponent
     // resolve: {
     //
     // },
@@ -14,4 +14,4 @@ export const customerRoute: Routes = [
     // },
     // canActivate: []
   }
-]
+];

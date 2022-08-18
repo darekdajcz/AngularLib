@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
-import {AppService} from "../app.service";
-import { NgxSpinnerService } from "ngx-spinner";
-import { SPINNER_TIMEOUT } from "../shared/constants/timeout.constants";
+import { TranslateService } from '@ngx-translate/core';
+import { AppService } from '../app.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SPINNER_TIMEOUT } from '../shared/constants/timeout.constants';
 
 @Component({
   selector: 'app-home',
@@ -18,13 +18,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.spinner.show().then(()=> setTimeout(() => this.spinner.hide(), SPINNER_TIMEOUT))
+    this.spinner.show().then(() => setTimeout(() => this.spinner.hide(), SPINNER_TIMEOUT));
   }
 
   click(): void {
     this.appService.getCustomer().subscribe({
       next: (res) => res.forEach((x) => console.log(x.firstName))
-    })
+    });
   }
 
 }

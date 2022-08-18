@@ -7,7 +7,7 @@
 <mat-sidenav-container>
   <mat-sidenav [(opened)]="opened">
 
-    <img class="avatar mat-elevation-z8" [src]="'assets/image/author.png'"  alt="dariusz_dajcz"/>
+    <img class="avatar mat-elevation-z8" [src]="'assets/image/author.png'" alt="dariusz_dajcz"/>
     <h4 class="name">Dariusz Dajcz</h4>
     <p class="designation">Angular Dev</p>
 
@@ -25,9 +25,9 @@
       <mat-icon>info</mat-icon>
       <span>About</span>
     </button>
-   <button mat-button class="menu-button" (click)="redirectTo('ngrx')">
-     <img class="icon" [src]="'assets/image/ngrx_-removebg.png'"  alt="ngrx"/>
-     <span class="ngrx-span">NgRx</span>
+    <button mat-button class="menu-button" (click)="redirectTo('ngrx')">
+      <img class="icon" [src]="'assets/image/ngrx_-removebg.png'" alt="ngrx"/>
+      <span class="ngrx-span">NgRx</span>
     </button>
 
     <mat-divider></mat-divider>
@@ -38,12 +38,13 @@
     </button>
   </mat-sidenav>
 
-<!--   main router-outlet-->
+  <!--   main router-outlet-->
   <mat-sidenav-content>
     <div class="content mat-elevation-z1">
       <router-outlet></router-outlet>
-      <ngx-spinner  bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#229489" type = "square-jelly-box" [fullScreen] = "true">
-        <p style="color: #229489" >
+      <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#229489" type="square-jelly-box"
+                   [fullScreen]="true">
+        <p style="color: #229489">
           Loading...
         </p>
       </ngx-spinner>

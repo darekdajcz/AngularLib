@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from "@angular/router";
-import { navbarRoute } from "./layouts/navbar/navbar.route";
-import { errorRoute } from "./layouts/error/error.route";
+import { RouterModule } from '@angular/router';
+import { navbarRoute } from './layouts/navbar/navbar.route';
+import { errorRoute } from './layouts/error/error.route';
 
 @NgModule({
   declarations: [],

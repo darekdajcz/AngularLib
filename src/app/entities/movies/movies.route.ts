@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
-import { MoviesComponent } from "./movies.component";
+import { Routes } from '@angular/router';
+import { MoviesComponent } from './movies.component';
 
 export const moviesRoute: Routes = [
   {
     path: '',
-    component: MoviesComponent,
+    component: MoviesComponent
     // resolve: {
     //
     // },
@@ -14,4 +14,4 @@ export const moviesRoute: Routes = [
     // },
     // canActivate: []
   }
-]
+];

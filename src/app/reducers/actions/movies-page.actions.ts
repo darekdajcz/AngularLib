@@ -1,5 +1,5 @@
-import { createAction, props } from "@ngrx/store";
-import { CreateMovieModel } from "../../entities/movies/dto/create-movie.model";
+import { createAction, props } from '@ngrx/store';
+import { CreateMovieModel } from '../../entities/movies/dto/create-movie.model';
 
 export const enter = createAction('[Movie Page] Enter');
 export const selectMovie = createAction(
@@ -7,7 +7,7 @@ export const selectMovie = createAction(
   props<{ movieId: string }>()
 );
 export const clearSelectedMovie = createAction(
-  '[Movie Page] Clear Selected Movie',
+  '[Movie Page] Clear Selected Movie'
 );
 export const createMovie = createAction(
   '[Movie Page] Create Movie',

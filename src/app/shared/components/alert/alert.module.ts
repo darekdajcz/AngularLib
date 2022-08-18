@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbAlertModule } from "@ng-bootstrap/ng-bootstrap";
-import { AlertComponent } from "./alert.component";
-import { FontAwesomeTestingModule } from "@fortawesome/angular-fontawesome/testing";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertComponent } from './alert.component';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -14,10 +13,11 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
   imports: [
     CommonModule,
     NgbAlertModule,
-    FontAwesomeModule,
+    FontAwesomeModule
   ],
   exports: [
     AlertComponent
   ]
 })
-export class AlertModule { }
+export class AlertModule {
+}
