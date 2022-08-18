@@ -91,7 +91,11 @@ export class MoviesComponent implements OnInit {
 
     this.movieService.updateMovie(movieRequest, this.movieId!.toString())
       .subscribe({
-        next: () => this.getMovies()
+        next: (res) => {
+          this.getMovies();
+          this.store.dispatch(MovieApiActions.movieUpdated({ movie: res }));
+
+        }
       });
   }
 
@@ -103,7 +107,10 @@ export class MoviesComponent implements OnInit {
     );
     this.movieService.createMovie(movieRequest)
       .subscribe({
-        next: () => this.getMovies()
+        next: (res) => {
+          this.getMovies();
+          this.store.dispatch(MovieApiActions.movieCreated({ movie: res }));
+        }
       });
   }
 
@@ -118,7 +125,10 @@ export class MoviesComponent implements OnInit {
           );
 
           this.movieService.deleteMovieById(movieId).subscribe({
-            next: () => this.getMovies()
+            next: (res) => {
+              this.getMovies()
+              this.store.dispatch(MovieApiActions.movieDeleted({ movie: res }));
+            }
           });
         }
       )

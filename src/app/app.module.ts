@@ -27,6 +27,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AlertModule } from './shared/components/alert/alert.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -63,9 +64,13 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 15
     })
+    // StoreModule.forRoot(reducers, {
+    //   metaReducers
+    // })
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },

@@ -8,15 +8,15 @@ export const movieLoaded = createAction(
 
 export const movieCreated = createAction(
   '[Movies API] Movies Created',
-  props<{ movies: MovieInterface }>()
+  props<{ movie: MovieInterface }>()
 );
 
 export const movieUpdated = createAction(
   '[Movies API] Movies Updated',
-  props<{ movies: MovieInterface }>()
+  props<{ movie: MovieInterface }>()
 );
 
 export const movieDeleted = createAction(
   '[Movies API] Movies Deleted',
-  props<{ movies: MovieInterface }>()
+  props<{ movie: MovieInterface }>()
 );
