@@ -88,13 +88,6 @@ export const reducer = createReducer(
 export const selectAll = (state: State) => state.collection;
 export const selectActiveMovieId = (state: State) => state.activeMovieId;
 
-export const selectActiveMovie_Bad_Performence = (state: State) => {
-  const movies = selectAll(state);
-  const activeMovieId = selectActiveMovieId(state);
-
-  return movies.find((movie) => movie._id === activeMovieId) || null;
-};
-
 export const selectActiveMovie = createSelector(
   selectAll,
   selectActiveMovieId,
@@ -102,5 +95,12 @@ export const selectActiveMovie = createSelector(
     movies.find((movie) => movie._id === activeMovieId) || null
 );
 
+export const selectTotalAmount = createSelector(
+  selectAll, (movies) => calculateTotalAmount(movies)
+);
 
-
+const calculateTotalAmount = (movies: MovieInterface[]): number => {
+  let totalAmount = 0;
+  movies.forEach((movie) => totalAmount += +movie.amount);
+  return totalAmount;
+};
