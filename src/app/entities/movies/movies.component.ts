@@ -139,7 +139,7 @@ export class MoviesComponent implements OnInit {
   editMovie(movie: MovieInterface) {
     this.store.dispatch(
       MoviePageActions.selectMovie({
-        movieId: this.movieId
+        movieId: movie._id
       }));
     this.movieId = movie._id;
     this.movieFormGroup.patchValue({

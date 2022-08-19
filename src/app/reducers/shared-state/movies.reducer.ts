@@ -14,19 +14,25 @@ const deleteMovie = (movies: MovieInterface[], movieId: string) =>
   movies.filter((movie) => movie._id !== movieId);
 
 
-
 export interface State {
   collection: MovieInterface[];
   activeMovieId: string | null;
+  lastAddedMovie: MovieInterface | null;
+  lastChosenMovie: MovieInterface | null;
+  lastDeletedMovie: MovieInterface | null;
 }
 
 export const initialState: State = {
   collection: [],
-  activeMovieId: null
+  activeMovieId: null,
+  lastAddedMovie: null,
+  lastChosenMovie: null,
+  lastDeletedMovie: null
 };
 
 export const reducer = createReducer(
   initialState,
+  ////// PAGE Reducers
   on(MoviePageActions.clearSelectedMovie, MoviePageActions.enter, (state) => {
     return {
       ...state,
@@ -34,10 +40,45 @@ export const reducer = createReducer(
     };
   }),
   on(MoviePageActions.selectMovie, (state, action) => {
+    console.log(action.movieId)
       return {
         ...state,
         activeMovieId: action.movieId
       };
     }
-  )
+  ),
+  on(MoviePageActions.enter, (state) => {
+    return {
+      ...state
+    };
+  }),
+  ////// API Reducers
+  on(MovieApiActions.movieLoaded, (state, action) => {
+    console.log(state);
+    return {
+      ...state,
+      collection: action.movies
+    };
+  }),
+  on(MovieApiActions.movieCreated, (state, action) => {
+    return {
+      ...state,
+      collection: createMovie(state.collection, action.movie),
+      lastAddedMovie: action.movie
+    };
+  }),
+  on(MovieApiActions.movieUpdated, (state, action) => {
+    return {
+      ...state,
+      collection: updateMovie(state.collection, action.movie)
+    };
+  }),
+  on(MovieApiActions.movieDeleted, (state, action) => {
+    return {
+      ...state,
+      collection: deleteMovie(state.collection, action.movie._id),
+      lastDeletedMovie: action.movie
+    };
+  })
 );
+
