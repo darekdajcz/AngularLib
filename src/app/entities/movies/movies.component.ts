@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MovieService } from './movie.service';
 import { MovieInterface } from './dto/movie.response';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreateMovieModel } from './dto/create-movie.model';
 import { SPINNER_TIMEOUT } from '../../shared/constants/timeout.constants';
 import { Store } from '@ngrx/store';
 import * as MoviePageActions from '../../reducers/actions/movies-page.actions';
 import * as MovieApiActions from '../../reducers/actions/movies-api.actions';
+import { selectActiveMovie, selectAllMovies, selectMoviesTotalAmount } from '../../reducers/shared-state/state';
 
 @Component({
   selector: 'app-movies',
@@ -17,13 +18,17 @@ import * as MovieApiActions from '../../reducers/actions/movies-api.actions';
 })
 export class MoviesComponent implements OnInit {
   panelOpenState = false;
-  movies: MovieInterface[] = [];
+  movies$: Observable<MovieInterface[]>;
   movieFormGroup!: FormGroup;
-  totalAmount = 0;
+  totalAmount$: Observable<number>;
+  currentMovie$: Observable<MovieInterface | null>;
   movieId!: string;
 
   constructor(private readonly spinner: NgxSpinnerService, private readonly movieService: MovieService,
               private readonly fb: FormBuilder, private readonly store: Store) {
+    this.movies$ = store.select(selectAllMovies);
+    this.totalAmount$ = store.select(selectMoviesTotalAmount);
+    this.currentMovie$ = store.select(selectActiveMovie)
   }
 
   ngOnInit(): void {
@@ -47,14 +52,9 @@ export class MoviesComponent implements OnInit {
   }
 
   getMovies(): void {
-    this.totalAmount = 0;
     this.movieService.getAllMovies()
-      .pipe(
-        tap((res) => res.forEach((movie) => this.totalAmount += +movie.amount))
-      )
       .subscribe({
         next: (res) => {
-          this.movies = res;
           this.store.dispatch(MovieApiActions.movieLoaded({ movies: res }));
         }
       });
@@ -126,7 +126,7 @@ export class MoviesComponent implements OnInit {
 
           this.movieService.deleteMovieById(movieId).subscribe({
             next: (res) => {
-              this.getMovies()
+              this.getMovies();
               this.store.dispatch(MovieApiActions.movieDeleted({ movie: res }));
             }
           });

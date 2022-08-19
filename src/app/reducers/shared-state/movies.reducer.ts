@@ -84,8 +84,15 @@ export const reducer = createReducer(
   })
 );
 
+
+export const calculateTotalAmount = (state: State): number => {
+  let totalAmount = 0;
+  state.collection.forEach((movie) => totalAmount += +movie.amount);
+  return totalAmount;
+};
 // selectors
 export const selectAll = (state: State) => state.collection;
+
 export const selectActiveMovieId = (state: State) => state.activeMovieId;
 
 export const selectActiveMovie = createSelector(
@@ -96,11 +103,9 @@ export const selectActiveMovie = createSelector(
 );
 
 export const selectTotalAmount = createSelector(
-  selectAll, (movies) => calculateTotalAmount(movies)
+  selectAll, calculateTotalAmount,
+  (movie, totalAmount) => totalAmount
 );
 
-const calculateTotalAmount = (movies: MovieInterface[]): number => {
-  let totalAmount = 0;
-  movies.forEach((movie) => totalAmount += +movie.amount);
-  return totalAmount;
-};
+
+
