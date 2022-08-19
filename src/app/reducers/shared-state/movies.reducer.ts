@@ -1,5 +1,5 @@
 import { MovieInterface } from '../../entities/movies/dto/movie.response';
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, createSelector, on } from '@ngrx/store';
 import * as MoviePageActions from '../../reducers/actions/movies-page.actions';
 import * as MovieApiActions from '../../reducers/actions/movies-api.actions';
 
@@ -30,6 +30,8 @@ export const initialState: State = {
   lastDeletedMovie: null
 };
 
+
+// reducer
 export const reducer = createReducer(
   initialState,
   ////// PAGE Reducers
@@ -40,7 +42,7 @@ export const reducer = createReducer(
     };
   }),
   on(MoviePageActions.selectMovie, (state, action) => {
-    console.log(action.movieId)
+      console.log(action.movieId);
       return {
         ...state,
         activeMovieId: action.movieId
@@ -81,4 +83,24 @@ export const reducer = createReducer(
     };
   })
 );
+
+// selectors
+export const selectAll = (state: State) => state.collection;
+export const selectActiveMovieId = (state: State) => state.activeMovieId;
+
+export const selectActiveMovie_Bad_Performence = (state: State) => {
+  const movies = selectAll(state);
+  const activeMovieId = selectActiveMovieId(state);
+
+  return movies.find((movie) => movie._id === activeMovieId) || null;
+};
+
+export const selectActiveMovie = createSelector(
+  selectAll,
+  selectActiveMovieId,
+  (movies, activeMovieId) =>
+    movies.find((movie) => movie._id === activeMovieId) || null
+);
+
+
 
