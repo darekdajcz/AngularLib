@@ -1,0 +1,27 @@
+<!--  form section-->
+<form class="d-flex flex-column align-items-start pt-5" [formGroup]="movieFormGroup" (ngSubmit)="saveMovie()">
+  <p>
+    {{!movieId ? 'Create movie by form' : 'Update movie by form'}}
+  </p>
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Amount</mat-label>
+    <input matInput formControlName="amount">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Duration</mat-label>
+    <input matInput formControlName="duration">
+  </mat-form-field>
+  <!-- HTML !-->
+  <div class="d-flex">
+    <button [disabled]="movieFormGroup.invalid || movieFormGroup.untouched" class="submit-button me-2" type="submit">
+      {{!movieId ? 'Create' : 'Update'}}
+    </button>
+    <button mat-raised-button (click)="clearForm()" type="button">
+      Clear
+    </button>
+  </div>
+</form>

@@ -35,7 +35,7 @@ the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 ++ adding to your browser Redux DevTools
 
 Redux works so fine
-task completed from commit --> * npm problem fixed * aded ngrx with schematics 
+task completed from commit --> * npm problem fixed * added ngrx with schematics 
 to commit         -----------> * ngrx redux completed * store works so fine
 
 ![img_2.png](../img_2.png)

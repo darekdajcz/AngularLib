@@ -17,21 +17,20 @@ import { selectActiveMovie, selectAllMovies, selectMoviesTotalAmount } from '../
   styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
-  panelOpenState = false;
-  movies$: Observable<MovieInterface[]>;
+  movies$?: Observable<MovieInterface[]>;
   movieFormGroup!: FormGroup;
-  totalAmount$: Observable<number>;
-  currentMovie$: Observable<MovieInterface | null>;
+  totalAmount$?: Observable<number>;
+  currentMovie$?: Observable<MovieInterface | null>;
   movieId!: string;
 
   constructor(private readonly spinner: NgxSpinnerService, private readonly movieService: MovieService,
               private readonly fb: FormBuilder, private readonly store: Store) {
-    this.movies$ = store.select(selectAllMovies);
-    this.totalAmount$ = store.select(selectMoviesTotalAmount);
-    this.currentMovie$ = store.select(selectActiveMovie)
   }
 
   ngOnInit(): void {
+    this.movies$ = this.store.select(selectAllMovies);
+    this.totalAmount$ = this.store.select(selectMoviesTotalAmount);
+    this.currentMovie$ = this.store.select(selectActiveMovie);
     this.initFormGroup();
     /** spinner starts on init */
     this.spinner.show()
@@ -154,6 +153,11 @@ export class MoviesComponent implements OnInit {
       MoviePageActions.clearSelectedMovie()
     );
     this.movieFormGroup.reset();
+    Object.keys(this.movieFormGroup.controls).forEach(
+      (key) => {
+        this.movieFormGroup.get(key)?.setErrors(null);
+      });
+    this.movieFormGroup.setErrors(null);
     this.movieId = '';
   }
 }

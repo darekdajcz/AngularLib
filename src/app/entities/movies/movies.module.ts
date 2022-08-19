@@ -14,11 +14,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { CreateMovieFormComponent } from './components/create-movie-form/create-movie-form.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { TotalAmountPanelComponent } from './components/total-amount-panel/total-amount-panel.component';
 
 
 @NgModule({
   declarations: [
-    MoviesComponent
+    MoviesComponent,
+    CreateMovieFormComponent,
+    MovieListComponent,
+    TotalAmountPanelComponent
   ],
   imports: [
     RouterModule.forChild(moviesRoute),

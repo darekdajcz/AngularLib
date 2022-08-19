@@ -1,0 +1,13 @@
+<mat-accordion>
+  <mat-expansion-panel class="amount mt-5"
+                       (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title> Show total amount of movies</mat-panel-title>
+      <mat-panel-description>
+        {{panelOpenState ? 'opened' : 'closed'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p class="currency">{{totalAmount | currency:'zł':'symbol'}}</p>
+  </mat-expansion-panel>
+</mat-accordion>

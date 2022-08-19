@@ -1,56 +1,19 @@
 <section class="page">
-  <p>movies section works!</p>
-  <div *ngFor="let movie of movies$ | async">
-    <div class="d-flex justify-content-between">
-       <span type="button" (click)="editMovie(movie)">
-      {{movie.title}}
-      </span>
-      <button mat-button (click)="deleteMovie(movie._id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
-    <mat-divider></mat-divider>
-  </div>
-  <mat-accordion>
-    <mat-expansion-panel class="amount mt-5"
-                         (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title> Show total amount of movies</mat-panel-title>
-        <mat-panel-description>
-          {{panelOpenState ? 'opened' : 'closed'}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p class="currency">{{totalAmount$ | async | currency:'zł':'symbol'}}</p>
-    </mat-expansion-panel>
-  </mat-accordion>
+  <h1 style="color: #127070">Movie list</h1>
+  <mat-divider></mat-divider>
 
-  <!--  form section-->
-  <div class="d-flex flex-column align-items-start pt-5" [formGroup]="movieFormGroup">
-    <p>
-      {{!movieId ? 'Create movie by form' : 'Update movie by form'}}
-    </p>
-    <mat-form-field appearance="fill">
-      <mat-label>Title</mat-label>
-      <input matInput formControlName="title">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Amount</mat-label>
-      <input matInput formControlName="amount">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Duration</mat-label>
-      <input matInput formControlName="duration">
-    </mat-form-field>
-    <!-- HTML !-->
-    <div class="d-flex">
-      <button [disabled]="movieFormGroup.invalid" class="submit-button" role="button" (click)="saveMovie()">
-        {{!movieId ? 'Create' : 'Update'}}
-      </button>
-      <button mat-raised-button (click)="clearForm()">
-        Clear
-      </button>
-    </div>
-  </div>
+  <!--  // list of movies-->
+  <app-movie-list [movies]="movies$ | async" (editMovieEmitter)="editMovie($event)"
+                  (deleteMovieEmitter)="deleteMovie($event)">
+  </app-movie-list>
+
+  <!--  // total amount-->
+  <app-total-amount-panel [totalAmount]="totalAmount$ | async"></app-total-amount-panel>
+
+  <!--  // form-->
+  <app-create-movie-form *ngIf=movieFormGroup
+                         [movieId]="movieId" [movieFormGroup]="movieFormGroup"
+                         (saveMovieEmitter)="saveMovie()" (clearFormEmitter)="clearForm()">
+  </app-create-movie-form>
 </section>
 

@@ -1,0 +1,11 @@
+<div *ngFor="let movie of movies">
+  <div class="d-flex justify-content-between">
+       <span type="button" (click)="editMovie(movie)">
+      {{movie.title}}
+      </span>
+    <button mat-button (click)="deleteMovie(movie._id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+</div>
