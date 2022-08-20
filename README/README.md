@@ -38,4 +38,4 @@ Redux works so fine
 task completed from commit --> * npm problem fixed * added ngrx with schematics 
 to commit         -----------> * ngrx redux completed * store works so fine
 
-![img_2.png](../img_2.png)
+![img_2.png](img_2.png)

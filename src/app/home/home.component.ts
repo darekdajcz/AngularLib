@@ -11,8 +11,6 @@ import { SPINNER_TIMEOUT } from '../shared/constants/timeout.constants';
 })
 export class HomeComponent implements OnInit {
 
-  title = 'AngularLib';
-
   constructor(private readonly translate: TranslateService, private readonly appService: AppService,
               private readonly spinner: NgxSpinnerService) {
   }
@@ -26,5 +24,4 @@ export class HomeComponent implements OnInit {
       next: (res) => res.forEach((x) => console.log(x.firstName))
     });
   }
-
 }
