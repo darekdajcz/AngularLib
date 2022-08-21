@@ -12,10 +12,13 @@ import { RouterModule } from '@angular/router';
       {
         path: 'ngrx',
         loadChildren: () => import('./movies/movies.module').then(module => module.MoviesModule)
+      },
+      {
+        path: '',
+        loadChildren: () => import('../auth/auth-routing.module').then(module => module.AuthRoutingModule)
       }
     ])
   ]
 })
 export class EntityModule {
-
 }

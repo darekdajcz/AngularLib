@@ -4,6 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../shared/components/login/login.component';
 import { RegisterComponent } from '../shared/components/register/register.component';
 import { ResetPasswordComponent } from '../shared/components/reset-password/reset-password.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -22,12 +26,27 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LoginComponent,
+    RegisterComponent,
+    ResetPasswordComponent
+  ],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule
   ],
-  exports: [RouterModule]
+  exports: [
+    LoginComponent,
+    RegisterComponent,
+    ResetPasswordComponent,
+    CommonModule,
+    RouterModule
+  ]
 })
 export class AuthRoutingModule {
 }

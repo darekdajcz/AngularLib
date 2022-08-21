@@ -1,1 +1,29 @@
-<p>login works!</p>
+<div class="d-flex justify-content-center align-items-center ms-3 h-100">
+  <div class="d-flex row ms-3">
+    <div>
+      Welcome back
+    </div>
+    <div>Please enter your details to sign in</div>
+    <form class="d-flex flex-column align-items-start pt-5" [formGroup]="signInForm" (ngSubmit)="signIn()">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password">
+      </mat-form-field>
+      <!-- HTML !-->
+      <div class="d-flex">
+        <button mat-stroked-button [disabled]="signInForm.invalid || signInForm.untouched" class="submit-button me-2" type="submit">
+          Sign In
+        </button>
+      </div>
+    </form>
+    <div class="d-flex">
+      <div class="register" type="button" (click)="registerRedirect('register')">Join to us</div>
+      <div class="register ms-4" type="button" (click)="registerRedirect('reset-password')">Forgot your password?</div>
+    </div>
+  </div>
+</div>

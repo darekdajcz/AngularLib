@@ -1,7 +1,5 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -26,11 +24,8 @@ import { EntityModule } from './entities/entity.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AlertModule } from './shared/components/alert/alert.module';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { SharedStateMovieModule } from './reducers/shared-state/state';
-import { AuthModule } from './auth/auth.module';
-import { AuthRoutingModule } from './auth/auth-routing.module';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -54,8 +49,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     FontAwesomeModule,
     AlertModule,
     BrowserAnimationsModule,
-    AuthModule,
-    AuthRoutingModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

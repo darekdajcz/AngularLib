@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SPINNER_TIMEOUT } from '../../constants/timeout.constants';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  signInForm!: FormGroup;
 
-  ngOnInit(): void {
+  constructor(private readonly fb: FormBuilder, private readonly router: Router,
+              private readonly spinner: NgxSpinnerService) {
   }
 
+  ngOnInit(): void {
+    this.signInForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+    setTimeout(() => this.spinner.hide(), SPINNER_TIMEOUT);
+  }
+
+  signIn() {
+
+  }
+
+  registerRedirect(pathRedirectTo: string) {
+      this.router.navigate([pathRedirectTo]).then(()=> this.spinner.show())
+    }
 }

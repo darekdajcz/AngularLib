@@ -1,23 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from '../shared/components/login/login.component';
-import { RegisterComponent } from '../shared/components/register/register.component';
-import { ResetPasswordComponent } from '../shared/components/reset-password/reset-password.component';
-
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    RegisterComponent,
-    ResetPasswordComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TranslateModule
   ],
   exports: [
-    LoginComponent,
-    RegisterComponent,
-    ResetPasswordComponent
   ]
 })
 export class AuthModule {
