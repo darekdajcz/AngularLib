@@ -29,6 +29,8 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { SharedStateMovieModule } from './reducers/shared-state/state';
+import { AuthModule } from './auth/auth.module';
+import { AuthRoutingModule } from './auth/auth-routing.module';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -52,6 +54,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     FontAwesomeModule,
     AlertModule,
     BrowserAnimationsModule,
+    AuthModule,
+    AuthRoutingModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
