@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SPINNER_TIMEOUT } from '../../constants/timeout.constants';
@@ -26,10 +26,14 @@ export class LoginComponent implements OnInit {
   }
 
   signIn() {
-
+    if (this.signInForm.invalid) {
+      return;
+    }
+    console.log(this.signInForm.get('email'));
+    console.log(this.signInForm.get('password'));
   }
 
   registerRedirect(pathRedirectTo: string) {
-      this.router.navigate([pathRedirectTo]).then(()=> this.spinner.show())
-    }
+    this.router.navigate([pathRedirectTo]).then(() => this.spinner.show());
+  }
 }
