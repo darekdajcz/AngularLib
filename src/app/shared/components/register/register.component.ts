@@ -35,13 +35,14 @@ export class RegisterComponent implements OnInit {
       this.registerForm.get('firstName')?.value,
       this.registerForm.get('lastName')?.value,
       this.registerForm.get('email')?.value,
-      this.registerForm.get('password')?.value,
-    )
-    this.accountService.registerAccount(registerAccount).subscribe((res) =>
-      this.alertService.info(`Congratulation ${res.firstName}, you just registered an account with us!`))
+      this.registerForm.get('password')?.value
+    );
+    this.accountService.registerAccount(registerAccount).subscribe({
+      next: (res) => this.alertService.info(`Congratulation ${ res.firstName }, you just registered an account with us!`)
+    });
   }
 
   redirect(register: string) {
-    this.router.navigate([register]).then(()=> this.spinner.show())
+    this.router.navigate([register]).then(() => this.spinner.show());
   }
 }

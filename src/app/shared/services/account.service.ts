@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AccountInterface } from '../models/account.interface';
 import { RegisterAccountDto } from '../models/register-account.dto';
+import { LoginAccountDto } from '../models/login-account.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class AccountService {
     return this.http.get<AccountInterface>(`this.resourceUrl${ accountId }`)
       .pipe(tap((account) => this.accountData = account));
   }
+
+  login = (loginAccount: LoginAccountDto): Observable<AccountInterface>  =>
+     this.http.post<AccountInterface>(`${this.resourceUrl}/login`, loginAccount)
+
 
   registerAccount = (account: RegisterAccountDto): Observable<AccountInterface> =>
     this.http.post<AccountInterface>(this.resourceUrl, account);
