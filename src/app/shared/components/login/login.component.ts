@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormGroup, UntypedFormControl, Validators } f
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SPINNER_TIMEOUT } from '../../constants/timeout.constants';
-import { AccountService } from '../../services/account.service';
 import { LoginAccountDto } from '../../models/login-account.dto';
 import { AlertService } from '../../services/alert.service';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   signInForm!: FormGroup;
 
   constructor(private readonly fb: FormBuilder, private readonly router: Router,
-              private readonly spinner: NgxSpinnerService, private readonly accountService: AccountService,
+              private readonly spinner: NgxSpinnerService, private readonly authService: AuthService,
               private readonly alertService: AlertService) {
   }
 
@@ -39,9 +39,9 @@ export class LoginComponent implements OnInit {
       this.signInForm.get('password')?.value
     );
 
-    this.accountService.login(loginAccount).subscribe({
+    this.authService.login(loginAccount).subscribe({
       next: (res) => {
-        this.router.navigate(['']);
+        this.router.navigate(['home']);
         this.alertService.info(`Congratulation ${ res.firstName }, you have just logged in!`);
       }
     });

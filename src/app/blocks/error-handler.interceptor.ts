@@ -12,9 +12,9 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       tap({
         next: () => null,
-        error: (error: HttpErrorResponse) => {
-          if (!(error.status === 401 && (error.message === ''))) {
-            this.alertService.error(error.message);
+        error: (errorResponse: HttpErrorResponse) => {
+          if (!(errorResponse.status === 401 && (errorResponse.message === ''))) {
+            this.alertService.error(errorResponse.error.message);
           }
         }
       })
